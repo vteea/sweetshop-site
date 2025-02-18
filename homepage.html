@@ -18,7 +18,7 @@
   background-color: #fcc9e6;
   overflow-x: hidden;
   transition: 0.5s;
-  padding-top: 50px; }
+  padding-top: 70px; }
 
   .sidenav a {
   padding: 8px 8px 8px 32px;
@@ -28,7 +28,11 @@
   display: block;
   transition: 0.3s; }
 
-  .sidenav a:hover { color: #ffeef8; }
+  .sidenav a:hover { 
+    color: #ffeef8; 
+    background:white;
+    width:100%;
+    }
 
   .sidenav .closebtn {
   position: absolute;
@@ -41,10 +45,6 @@
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}  }
 
- #main {
-  transition: margin-left .5s;
-  padding: 16px;
- }
 
   </style>
 
@@ -87,7 +87,42 @@
   border: 0px;
  }
 
+.filterbtn {
+  color: black;
+  display:block;
+  text-align:left;
+  padding:16px 16px;
+  width:100%;
+  font-size: 15px;
+  cursor: pointer;
+  border:none;
+ }
 
+ .filterbtn .badge {
+  position: absolute;
+  top: 30px;
+  right: -10px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background-color: pink;
+  color: black;
+}
+
+ .filterbtn:hover {
+  background-color: #ff78a1;
+  width:100%;
+ }
+
+ .filterbtn.active{
+  background-color:pink;
+  width:100%
+  color:#b8226d;
+ }
+
+</style>
+
+
+<style>
 
 div.gallery {
   margin: 5px;
@@ -111,8 +146,130 @@ div.desc {
   background-color: #fcc9e6;
 }
 
- </style>
 
+.form button {
+  border: none;
+  background: none;
+  color: #8b8ba7;
+}
+/* styling of whole input container */
+.form {
+  --timing: 0.3s;
+  --width-of-input: 200px;
+  --height-of-input: 40px;
+  --border-height: 2px;
+  --input-bg: #fff;
+  --border-color: #2f2ee9;
+  --border-radius: 30px;
+  --after-border-radius: 1px;
+  position: relative;
+  width: var(--width-of-input);
+  height: var(--height-of-input);
+  display: flex;
+  align-items: center;
+  padding-inline: 0.8em;
+  border-radius: var(--border-radius);
+  transition: border-radius 0.5s ease;
+  background: var(--input-bg,#fff);
+}
+/* styling of Input */
+.input {
+  font-size: 0.9rem;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+}
+/* styling of animated border */
+.form:before {
+  content: "";
+  position: absolute;
+  background: var(--border-color);
+  transform: scaleX(0);
+  transform-origin: center;
+  width: 100%;
+  height: var(--border-height);
+  left: 0;
+  bottom: 0;
+  border-radius: 1px;
+  transition: transform var(--timing) ease;
+}
+/* Hover on Input */
+.form:focus-within {
+  border-radius: var(--after-border-radius);
+}
+
+input:focus {
+  outline: none;
+}
+/* here is code of animated border */
+.form:focus-within:before {
+  transform: scale(1);
+}
+/* styling of close button */
+/* == you can click the close button to remove text == */
+.reset {
+  border: none;
+  background: none;
+  opacity: 0;
+  visibility: hidden;
+}
+/* close button shown when typing */
+input:not(:placeholder-shown) ~ .reset {
+  opacity: 1;
+  visibility: visible;
+}
+/* sizing svg icons */
+.form svg {
+  width: 17px;
+  margin-top: 3px;
+}
+
+</style>
+
+<style>
+.dropbtn {
+  background-color: #dcdbdb;
+  color: black;
+  padding: 16px 30px;
+  font-size: 16px;
+  border: none;
+  border-radius:20px;
+  cursor: pointer;
+}
+
+.dropbtn:hover {
+  background-color: #ffa5c0;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+</style>
  
 </head>
 
@@ -130,7 +287,7 @@ div.desc {
  </style>
     
 <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><img src="https://i.pinimg.com/736x/71/cc/bd/71ccbdba3b39e63734d0de39b17a4171.jpg" style="height:60px;width:60px;border-radius:50px"></a>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="background:transparent;width:40px;"><img src="https://i.pinimg.com/736x/71/cc/bd/71ccbdba3b39e63734d0de39b17a4171.jpg" style="height:60px;width:60px;border-radius:50px"></a>
     <a target="_self" href="homepage.html">Home</a>
     <a target="_self" href="contact.html">Contact</a>
     <a target="_self" href="aboutus.html">About us</a>
@@ -165,6 +322,21 @@ function closeNav() {
 </script>
 
 
+<form class="form">
+    <button>
+        <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
+            <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+    </button>
+    <input class="input" placeholder="search..." required="" type="text">
+    <button class="reset" type="reset">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+    </button>
+</form>
+
+
 <div style="float:right;">
     <a target="_self" href="favourites.html" class="btn">
         <span> &#10084 </span>
@@ -176,18 +348,57 @@ function closeNav() {
     </a>
 </div>
 
+<br>
 
-<div id="myBtnContainer">
-  <button class="btn active" onclick="filterSelection('all')"> Show all</button>
-  <button class="btn" onclick="filterSelection('praji1')"> Praji1</button>
-  <button class="btn" onclick="filterSelection('praji2')"> Praji2</button>
-  <button class="btn" onclick="filterSelection('valentines')"> Valentines</button>
-  <button class="btn" onclick="filterSelection('wedding')"> Wedding</button>
+
+<div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">Filter by</button>
+  <div id="myDropdown" class="dropdown-content">
+    <button class="filterbtn active" onclick="filterSelection('all')"> Show all</button>
+    <button class="filterbtn" onclick="filterSelection('praji1')"> Praji1</button>
+    <button class="filterbtn" onclick="filterSelection('praji2')"> Praji2</button>
+    <button class="filterbtn" onclick="filterSelection('valentines')"> Valentines</button>
+    <button class="filterbtn" onclick="filterSelection('wedding')"> Wedding</button>
+  </div>
 </div>
+
+<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+
+<script>
+  
+function filterSelection(category) {
+  let items = document.querySelectorAll('.gallery');
+  items.forEach(item => {
+    item.style.display = category === 'all' || item.classList.contains(category) ? 'block' : 'none';
+  });
+  document.querySelectorAll('.filterbtn').forEach(btn => btn.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+}
+</script>
 
 
 <br>
-<div id="main">
+<div id="gallery-container">
 <div class="gallery praji1">
   <a  target="_self" href="praji1.html">
     <img src="https://i.pinimg.com/736x/32/76/73/32767392125e55774d9a8cb33a57fe70.jpg" width="600" height="400">
@@ -258,7 +469,7 @@ function closeNav() {
   <div class="desc">Add a description of the image here</div>
 </div>
 
-<div class="gallery">
+<div class="gallery valentines">
   <a  target="_self" href="img_lights.jpg">
     <img src="https://i.pinimg.com/736x/ad/dc/f1/addcf18715ff3cb920ad72800501f5a9.jpg" width="600" height="400">
   </a>
@@ -273,54 +484,11 @@ function closeNav() {
 </div>
 </div>
  
-<script>
-filterSelection("all")
-function filterSelection(c) {
-  var x, i;
-  x = document.getElementsByClassName("gallery");
-  if (c == "all") c = "";
-  for (i = 0; i < x.length; i++) {
-    w3RemoveClass(x[i], "show");
-    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
-  }
-}
 
-function w3AddClass(element, name) {
-  var i, arr1, arr2;
-  arr1 = element.className.split(" ");
-  arr2 = name.split(" ");
-  for (i = 0; i < arr2.length; i++) {
-    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
-  }
-}
-
-function w3RemoveClass(element, name) {
-  var i, arr1, arr2;
-  arr1 = element.className.split(" ");
-  arr2 = name.split(" ");
-  for (i = 0; i < arr2.length; i++) {
-    while (arr1.indexOf(arr2[i]) > -1) {
-      arr1.splice(arr1.indexOf(arr2[i]), 1);     
-    }
-  }
-  element.className = arr1.join(" ");
-}
-
-// Add active class to the current button (highlight it)
-var btnContainer = document.getElementById("myBtnContainer");
-var btns = btnContainer.getElementsByClassName("btn");
-for (var i = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function(){
-    var current = document.getElementsByClassName("active");
-    current[0].className = current[0].className.replace(" active", "");
-    this.className += " active";
-  });
-}
-</script>
 
 
 <br>
-<p style="position:fixed margin-top:100%">@tea.srl</p>
+<p style="position:fixed margin-top:-100%">@tea.srl</p>
 </body>
 
 </html>
