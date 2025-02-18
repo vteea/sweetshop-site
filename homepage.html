@@ -1,0 +1,326 @@
+ <!DOCTYPE html>
+ <html>
+
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1">   
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <style>
+  body { font-family: "Lato", sans-serif; 
+  transition: background-color .5s;}
+
+  .sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #fcc9e6;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 50px; }
+
+  .sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color:#ff4e83;
+  display: block;
+  transition: 0.3s; }
+
+  .sidenav a:hover { color: #ffeef8; }
+
+  .sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px; }
+
+  @media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}  }
+
+ #main {
+  transition: margin-left .5s;
+  padding: 16px;
+ }
+
+  </style>
+
+  <style>
+
+  
+ .btn {
+  background-color: #ff4e83;
+  color: white;
+  padding: 15px 15px;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 16px;
+ }
+
+ .btn .badge {
+  position: absolute;
+  top: 30px;
+  right: -10px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background-color: pink;
+  color: black;
+}
+
+ .btn:hover {
+  background-color: #ff78a1;
+ }
+
+ .btn.active{
+  background-color:pink;
+  color:black;
+ }
+
+ .social-buttons {
+  display: flex;
+  justify-content: right;
+  margin-right: 20px;
+  margin-top: 95%;
+  border: 0px;
+ }
+
+
+
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 180px;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: 150px;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+  background-color: #fcc9e6;
+}
+
+ </style>
+
+ 
+</head>
+
+<body>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ <style>
+    body {
+        <!background-image: url();>
+        background-color: white
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        }
+ </style>
+    
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><img src="https://i.pinimg.com/736x/71/cc/bd/71ccbdba3b39e63734d0de39b17a4171.jpg" style="height:60px;width:60px;border-radius:50px"></a>
+    <a target="_self" href="homepage.html">Home</a>
+    <a target="_self" href="contact.html">Contact</a>
+    <a target="_self" href="aboutus.html">About us</a>
+    <a target="_self" href="favourites.html">Favourites</a>
+    <div class="social-buttons">
+        <a href="https://www.facebook.com/cofetariafriandise/">
+        <button class="btn" style="margin-right:5px"><i class="fa fa-facebook" style="width:15px"></i></button>
+        </a>
+        <a href="https://www.instagram.com/cofetaria.friandise/">
+        <button class="btn"><i class="fa fa-instagram"></i></button>
+        </a>
+    </div>
+</div>
+    
+
+ <span style="font-size:30px;cursor:pointer" onclick="openNav()">
+    <img src="https://i.pinimg.com/736x/71/cc/bd/71ccbdba3b39e63734d0de39b17a4171.jpg" style="height:60px;width:60px">
+ </span>
+
+ <script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "0px";
+  document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+  document.body.style.backgroundColor = "white";
+}
+</script>
+
+
+<div style="float:right;">
+    <a target="_self" href="favourites.html" class="btn">
+        <span> &#10084 </span>
+        <span class="badge">3</span>
+    </a>
+    <a target="_self" href="cart.html" class="btn">
+        <span>Cart</span>
+        <span class="badge">2</span>
+    </a>
+</div>
+
+
+<div id="myBtnContainer">
+  <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+  <button class="btn" onclick="filterSelection('praji1')"> Praji1</button>
+  <button class="btn" onclick="filterSelection('praji2')"> Praji2</button>
+  <button class="btn" onclick="filterSelection('valentines')"> Valentines</button>
+  <button class="btn" onclick="filterSelection('wedding')"> Wedding</button>
+</div>
+
+
+<br>
+<div id="main">
+<div class="gallery praji1">
+  <a  target="_self" href="praji1.html">
+    <img src="https://i.pinimg.com/736x/32/76/73/32767392125e55774d9a8cb33a57fe70.jpg" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+
+<div class="gallery praji2">
+  <a  target="_self" href="praji2.html">
+    <img src="https://i.pinimg.com/736x/60/c7/cd/60c7cd7f0b814af6e4e3e4f8fa69a1a9.jpg" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+
+<div class="gallery valentines">
+  <a  target="_self" href="#">
+    <img src="https://i.pinimg.com/736x/ad/dc/f1/addcf18715ff3cb920ad72800501f5a9.jpg" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+
+<div class="gallery wedding">
+  <a  target="_self" href="img_mountains.jpg">
+    <img src="https://i.pinimg.com/736x/87/4f/63/874f63920afcf961a4fd58fe111f70dc.jpg" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+
+<div class="gallery praji1">
+  <a  target="_self" href="praji1.html">
+    <img src="https://i.pinimg.com/736x/32/76/73/32767392125e55774d9a8cb33a57fe70.jpg" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+
+<div class="gallery praji2">
+  <a  target="_self" href="praji2.html">
+    <img src="https://i.pinimg.com/736x/60/c7/cd/60c7cd7f0b814af6e4e3e4f8fa69a1a9.jpg" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+
+<div class="gallery valentines">
+  <a  target="_self" href="img_lights.jpg">
+    <img src="https://i.pinimg.com/736x/ad/dc/f1/addcf18715ff3cb920ad72800501f5a9.jpg" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+
+<div class="gallery wedding">
+  <a  target="_self" href="img_mountains.jpg">
+    <img src="https://i.pinimg.com/736x/87/4f/63/874f63920afcf961a4fd58fe111f70dc.jpg" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+
+<div class="gallery praji1">
+  <a  target="_self" href="praji1.html">
+    <img src="https://i.pinimg.com/736x/32/76/73/32767392125e55774d9a8cb33a57fe70.jpg" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+
+<div class="gallery praji1 praji2">
+  <a  target="_self" href="praji2.html">
+    <img src="https://i.pinimg.com/736x/60/c7/cd/60c7cd7f0b814af6e4e3e4f8fa69a1a9.jpg" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+
+<div class="gallery">
+  <a  target="_self" href="img_lights.jpg">
+    <img src="https://i.pinimg.com/736x/ad/dc/f1/addcf18715ff3cb920ad72800501f5a9.jpg" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+
+<div class="gallery">
+  <a  target="_self" href="img_mountains.jpg">
+    <img src="https://i.pinimg.com/736x/87/4f/63/874f63920afcf961a4fd58fe111f70dc.jpg" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+</div>
+ 
+<script>
+filterSelection("all")
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("gallery");
+  if (c == "all") c = "";
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
+}
+
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
+}
+
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);     
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+// Add active class to the current button (highlight it)
+var btnContainer = document.getElementById("myBtnContainer");
+var btns = btnContainer.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function(){
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+</script>
+
+
+<br>
+<p style="position:fixed margin-top:100%">@tea.srl</p>
+</body>
+
+</html>
