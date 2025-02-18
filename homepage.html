@@ -155,7 +155,7 @@ div.desc {
 /* styling of whole input container */
 .form {
   --timing: 0.3s;
-  --width-of-input: 200px;
+  --width-of-input: 60%;
   --height-of-input: 40px;
   --border-height: 2px;
   --input-bg: #fff;
@@ -247,6 +247,7 @@ input:not(:placeholder-shown) ~ .reset {
 .dropdown {
   position: relative;
   display: inline-block;
+  margin-right:30px;
 }
 
 .dropdown-content {
@@ -269,6 +270,25 @@ input:not(:placeholder-shown) ~ .reset {
 .dropdown a:hover {background-color: #ddd;}
 
 .show {display: block;}
+
+.header {
+  background-image:url(https://i.pinimg.com/736x/f5/27/54/f52754f1f6478a1a862966b79d0e2a8b.jpg);
+  position: fixed; /* Makes it stay at the top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 20px;
+  display: flex; /* Aligns items in a row */
+  justify-content: space-between; /* Even spacing */
+  align-items: center; /* Centers items vertically */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensures it stays above other content */
+}
+
+.content{
+  margin-top:120px;
+}
+
 </style>
  
 </head>
@@ -285,7 +305,11 @@ input:not(:placeholder-shown) ~ .reset {
         background-attachment: fixed;
         }
  </style>
-    
+
+
+
+<div class="header"> 
+
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="background:transparent;width:40px;"><img src="https://i.pinimg.com/736x/71/cc/bd/71ccbdba3b39e63734d0de39b17a4171.jpg" style="height:60px;width:60px;border-radius:50px"></a>
     <a target="_self" href="homepage.html">Home</a>
@@ -293,10 +317,10 @@ input:not(:placeholder-shown) ~ .reset {
     <a target="_self" href="aboutus.html">About us</a>
     <a target="_self" href="favourites.html">Favourites</a>
     <div class="social-buttons">
-        <a href="https://www.facebook.com/cofetariafriandise/">
+        <a href="https://www.facebook.com/cofetariafriandise/" style="background:transparent;width:30px;">
         <button class="btn" style="margin-right:5px"><i class="fa fa-facebook" style="width:15px"></i></button>
         </a>
-        <a href="https://www.instagram.com/cofetaria.friandise/">
+        <a href="https://www.instagram.com/cofetaria.friandise/" style="background:transparent;width:30px;">
         <button class="btn"><i class="fa fa-instagram"></i></button>
         </a>
     </div>
@@ -304,7 +328,7 @@ input:not(:placeholder-shown) ~ .reset {
     
 
  <span style="font-size:30px;cursor:pointer" onclick="openNav()">
-    <img src="https://i.pinimg.com/736x/71/cc/bd/71ccbdba3b39e63734d0de39b17a4171.jpg" style="height:60px;width:60px">
+    <img src="https://i.pinimg.com/736x/71/cc/bd/71ccbdba3b39e63734d0de39b17a4171.jpg" style="border-radius:60px;height:60px;width:60px">
  </span>
 
  <script>
@@ -337,8 +361,8 @@ function closeNav() {
 </form>
 
 
-<div style="float:right;">
-    <a target="_self" href="favourites.html" class="btn">
+<div style="float:right">
+    <a target="_self" href="favourites.html" class="btn" style="margin-right:30px;">
         <span> &#10084 </span>
         <span class="badge">3</span>
     </a>
@@ -348,147 +372,188 @@ function closeNav() {
     </a>
 </div>
 
-<br>
-
-
-<div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn">Filter by</button>
-  <div id="myDropdown" class="dropdown-content">
-    <button class="filterbtn active" onclick="filterSelection('all')"> Show all</button>
-    <button class="filterbtn" onclick="filterSelection('praji1')"> Praji1</button>
-    <button class="filterbtn" onclick="filterSelection('praji2')"> Praji2</button>
-    <button class="filterbtn" onclick="filterSelection('valentines')"> Valentines</button>
-    <button class="filterbtn" onclick="filterSelection('wedding')"> Wedding</button>
-  </div>
 </div>
 
-<script>
-/* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
 
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
+<div class="content">
+
+  <div class="dropdown" style="float:right">
+    <button onclick="myFunction()" class="dropbtn">Filter by</button>
+    <div id="myDropdown" class="dropdown-content">
+      <button class="filterbtn active" onclick="filterSelection('all')"> Show all</button>
+      <button class="filterbtn" onclick="filterSelection('praji1')"> Praji1</button>
+      <button class="filterbtn" onclick="filterSelection('praji2')"> Praji2</button>
+      <button class="filterbtn" onclick="filterSelection('valentines')"> Valentines</button>
+      <button class="filterbtn" onclick="filterSelection('wedding')"> Wedding</button>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button onclick="myFunction()" class="dropbtn">Sort by</button>
+    <div id="myDropdown" class="dropdown-content">
+      <button class="filterbtn" onclick="sortTable('priceascending')"> Price ascending</button>
+      <button class="filterbtn" onclick="sortTable('priceascending')"> Price ascending</button>
+    </div>
+  </div>
+
+
+  <script>
+
+  function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
       }
     }
   }
-}
-</script>
+  </script>
 
-<script>
+  <script>
+
+  function filterSelection(category) {
+    let items = document.querySelectorAll('.gallery');
+    items.forEach(item => {
+      item.style.display = category === 'all' || item.classList.contains(category) ? 'block' : 'none';
+    });
+    document.querySelectorAll('.filterbtn').forEach(btn => btn.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+  }
+  </script>
+
+
+  <script>
+
+  function sortTable(order) {
+    var container = document.getElementById("main"); // The container holding gallery items
+    var items = Array.from(container.getElementsByClassName("gallery")); // Get all gallery items
+    
+    items.sort((a, b) => {
+      let priceA = parseFloat(a.querySelector(".desc").textContent.replace(/[^\d.]/g, "")) || 0;
+      let priceB = parseFloat(b.querySelector(".desc").textContent.replace(/[^\d.]/g, "")) || 0;
+
+      return order === "priceascending" ? priceA - priceB : priceB - priceA;
+    });
+
+    // Append sorted items back to the container
+    items.forEach(item => container.appendChild(item));
+  }
+
+  // Close dropdown when clicking outside
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      for (let i = 0; i < dropdowns.length; i++) {
+        if (dropdowns[i].classList.contains("show")) {
+          dropdowns[i].classList.remove("show");
+        }
+      }
+    }
+  };
+  </script>
+
+  <br>
+  <div id="gallery-container">
+  <div class="gallery praji1">
+    <a  target="_self" href="praji1.html">
+      <img src="https://i.pinimg.com/736x/32/76/73/32767392125e55774d9a8cb33a57fe70.jpg" width="600" height="400">
+    </a>
+    <div class="desc">praji1</div>
+    <div class="desc">10 lei</div>
+  </div>
+
+  <div class="gallery praji2">
+    <a  target="_self" href="praji2.html">
+      <img src="https://i.pinimg.com/736x/60/c7/cd/60c7cd7f0b814af6e4e3e4f8fa69a1a9.jpg" width="600" height="400">
+    </a>
+    <div class="desc">praji2</div>
+    <div class="desc">8 lei</div>
+  </div>
+
+  <div class="gallery valentines">
+    <a  target="_self" href="#">
+      <img src="https://i.pinimg.com/736x/ad/dc/f1/addcf18715ff3cb920ad72800501f5a9.jpg" width="600" height="400">
+    </a>
+    <div class="desc">Add a description of the image here</div>
+  </div>
+
+  <div class="gallery wedding">
+    <a  target="_self" href="img_mountains.jpg">
+      <img src="https://i.pinimg.com/736x/87/4f/63/874f63920afcf961a4fd58fe111f70dc.jpg" width="600" height="400">
+    </a>
+    <div class="desc">Add a description of the image here</div>
+  </div>
+
+  <div class="gallery praji1">
+    <a  target="_self" href="praji1.html">
+      <img src="https://i.pinimg.com/736x/32/76/73/32767392125e55774d9a8cb33a57fe70.jpg" width="600" height="400">
+    </a>
+    <div class="desc">Add a description of the image here</div>
+  </div>
+
+  <div class="gallery praji2">
+    <a  target="_self" href="praji2.html">
+      <img src="https://i.pinimg.com/736x/60/c7/cd/60c7cd7f0b814af6e4e3e4f8fa69a1a9.jpg" width="600" height="400">
+    </a>
+    <div class="desc">Add a description of the image here</div>
+  </div>
+
+  <div class="gallery valentines">
+    <a  target="_self" href="img_lights.jpg">
+      <img src="https://i.pinimg.com/736x/ad/dc/f1/addcf18715ff3cb920ad72800501f5a9.jpg" width="600" height="400">
+    </a>
+    <div class="desc">Add a description of the image here</div>
+  </div>
+
+  <div class="gallery wedding">
+    <a  target="_self" href="img_mountains.jpg">
+      <img src="https://i.pinimg.com/736x/87/4f/63/874f63920afcf961a4fd58fe111f70dc.jpg" width="600" height="400">
+    </a>
+    <div class="desc">Add a description of the image here</div>
+  </div>
+
+  <div class="gallery praji1">
+    <a  target="_self" href="praji1.html">
+      <img src="https://i.pinimg.com/736x/32/76/73/32767392125e55774d9a8cb33a57fe70.jpg" width="600" height="400">
+    </a>
+    <div class="desc">Add a description of the image here</div>
+  </div>
+
+  <div class="gallery praji1 praji2">
+    <a  target="_self" href="praji2.html">
+      <img src="https://i.pinimg.com/736x/60/c7/cd/60c7cd7f0b814af6e4e3e4f8fa69a1a9.jpg" width="600" height="400">
+    </a>
+    <div class="desc">Add a description of the image here</div>
+  </div>
+
+  <div class="gallery valentines">
+    <a  target="_self" href="img_lights.jpg">
+      <img src="https://i.pinimg.com/736x/ad/dc/f1/addcf18715ff3cb920ad72800501f5a9.jpg" width="600" height="400">
+    </a>
+    <div class="desc">Add a description of the image here</div>
+  </div>
+
+  <div class="gallery">
+    <a  target="_self" href="img_mountains.jpg">
+      <img src="https://i.pinimg.com/736x/87/4f/63/874f63920afcf961a4fd58fe111f70dc.jpg" width="600" height="400">
+    </a>
+    <div class="desc">Add a description of the image here</div>
+  </div>
   
-function filterSelection(category) {
-  let items = document.querySelectorAll('.gallery');
-  items.forEach(item => {
-    item.style.display = category === 'all' || item.classList.contains(category) ? 'block' : 'none';
-  });
-  document.querySelectorAll('.filterbtn').forEach(btn => btn.classList.remove('active'));
-  event.currentTarget.classList.add('active');
-}
-</script>
+  </div>
 
 
-<br>
-<div id="gallery-container">
-<div class="gallery praji1">
-  <a  target="_self" href="praji1.html">
-    <img src="https://i.pinimg.com/736x/32/76/73/32767392125e55774d9a8cb33a57fe70.jpg" width="600" height="400">
-  </a>
-  <div class="desc">Add a description of the image here</div>
 </div>
 
-<div class="gallery praji2">
-  <a  target="_self" href="praji2.html">
-    <img src="https://i.pinimg.com/736x/60/c7/cd/60c7cd7f0b814af6e4e3e4f8fa69a1a9.jpg" width="600" height="400">
-  </a>
-  <div class="desc">Add a description of the image here</div>
-</div>
-
-<div class="gallery valentines">
-  <a  target="_self" href="#">
-    <img src="https://i.pinimg.com/736x/ad/dc/f1/addcf18715ff3cb920ad72800501f5a9.jpg" width="600" height="400">
-  </a>
-  <div class="desc">Add a description of the image here</div>
-</div>
-
-<div class="gallery wedding">
-  <a  target="_self" href="img_mountains.jpg">
-    <img src="https://i.pinimg.com/736x/87/4f/63/874f63920afcf961a4fd58fe111f70dc.jpg" width="600" height="400">
-  </a>
-  <div class="desc">Add a description of the image here</div>
-</div>
-
-<div class="gallery praji1">
-  <a  target="_self" href="praji1.html">
-    <img src="https://i.pinimg.com/736x/32/76/73/32767392125e55774d9a8cb33a57fe70.jpg" width="600" height="400">
-  </a>
-  <div class="desc">Add a description of the image here</div>
-</div>
-
-<div class="gallery praji2">
-  <a  target="_self" href="praji2.html">
-    <img src="https://i.pinimg.com/736x/60/c7/cd/60c7cd7f0b814af6e4e3e4f8fa69a1a9.jpg" width="600" height="400">
-  </a>
-  <div class="desc">Add a description of the image here</div>
-</div>
-
-<div class="gallery valentines">
-  <a  target="_self" href="img_lights.jpg">
-    <img src="https://i.pinimg.com/736x/ad/dc/f1/addcf18715ff3cb920ad72800501f5a9.jpg" width="600" height="400">
-  </a>
-  <div class="desc">Add a description of the image here</div>
-</div>
-
-<div class="gallery wedding">
-  <a  target="_self" href="img_mountains.jpg">
-    <img src="https://i.pinimg.com/736x/87/4f/63/874f63920afcf961a4fd58fe111f70dc.jpg" width="600" height="400">
-  </a>
-  <div class="desc">Add a description of the image here</div>
-</div>
-
-<div class="gallery praji1">
-  <a  target="_self" href="praji1.html">
-    <img src="https://i.pinimg.com/736x/32/76/73/32767392125e55774d9a8cb33a57fe70.jpg" width="600" height="400">
-  </a>
-  <div class="desc">Add a description of the image here</div>
-</div>
-
-<div class="gallery praji1 praji2">
-  <a  target="_self" href="praji2.html">
-    <img src="https://i.pinimg.com/736x/60/c7/cd/60c7cd7f0b814af6e4e3e4f8fa69a1a9.jpg" width="600" height="400">
-  </a>
-  <div class="desc">Add a description of the image here</div>
-</div>
-
-<div class="gallery valentines">
-  <a  target="_self" href="img_lights.jpg">
-    <img src="https://i.pinimg.com/736x/ad/dc/f1/addcf18715ff3cb920ad72800501f5a9.jpg" width="600" height="400">
-  </a>
-  <div class="desc">Add a description of the image here</div>
-</div>
-
-<div class="gallery">
-  <a  target="_self" href="img_mountains.jpg">
-    <img src="https://i.pinimg.com/736x/87/4f/63/874f63920afcf961a4fd58fe111f70dc.jpg" width="600" height="400">
-  </a>
-  <div class="desc">Add a description of the image here</div>
-</div>
-</div>
- 
-
-
-
-<br>
-<p style="position:fixed margin-top:-100%">@tea.srl</p>
+<footer>@tea.srl</footer>
 </body>
 
 </html>
