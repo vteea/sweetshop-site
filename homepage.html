@@ -119,6 +119,12 @@
   color:#b8226d;
  }
 
+ .filterbtn.active::after {
+  content: " x";
+  margin-right: 5px;
+  float:right;
+}
+
 </style>
 
 
@@ -273,20 +279,37 @@ input:not(:placeholder-shown) ~ .reset {
 
 .header {
   background-image:url(https://i.pinimg.com/736x/f5/27/54/f52754f1f6478a1a862966b79d0e2a8b.jpg);
-  position: fixed; /* Makes it stay at the top */
+  position: relative; /* fixed Makes it stay at the top */
   top: 0;
-  left: 0;
+  left: 0;/* inca mai e spatiu in stanga trb fixed*/
   width: 100%;
   padding: 15px 20px;
   display: flex; /* Aligns items in a row */
   justify-content: space-between; /* Even spacing */
   align-items: center; /* Centers items vertically */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 5px #dcdbdb;
   z-index: 1000; /* Ensures it stays above other content */
 }
 
+.header2{
+  background:transparent;
+  margin-top:20px;
+  width:100%;
+  display:block;
+  z-index:1000;
+}
+
 .content{
-  margin-top:120px;
+  margin-top:100px;
+  height: 100%;
+  margin: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.footer{
+  text-align: center;
+  padding: 10px;
 }
 
 </style>
@@ -424,16 +447,15 @@ input:not(:placeholder-shown) ~ .reset {
 <body>
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- <style>
-    body {
-        <!background-image: url();>
-        background-color: white
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-attachment: fixed;
-        }
- </style>
-
+<style>
+  body {
+    <!background-image: url();>
+    background-color: white
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+      }
+</style>
 
 
 <div class="header"> 
@@ -488,51 +510,54 @@ function closeNav() {
     </button>
 </form>
 
-
-<div style="float:right;display:flex">
+<div style="display:flex">
     <a target="_self" href="favourites.html" style="margin-right:30px;" class="heartbtn">
       <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20.503" height="20.625" viewBox="0 0 17.503 15.625">
         <path id="Fill" d="M8.752,15.625h0L1.383,8.162a4.824,4.824,0,0,1,0-6.762,4.679,4.679,0,0,1,6.674,0l.694.7.694-.7a4.678,4.678,0,0,1,6.675,0,4.825,4.825,0,0,1,0,6.762L8.752,15.624ZM4.72,1.25A3.442,3.442,0,0,0,2.277,2.275a3.562,3.562,0,0,0,0,5l6.475,6.556,6.475-6.556a3.563,3.563,0,0,0,0-5A3.443,3.443,0,0,0,12.786,1.25h-.01a3.415,3.415,0,0,0-2.443,1.038L8.752,3.9,7.164,2.275A3.442,3.442,0,0,0,4.72,1.25Z" transform="translate(0 0)"></path>
         <span class="badge">3</span>
       </svg>
     </a>
-    <a target="_self" href="cart.html" class="btn-cart">
+    <a target="_self" href="cart.html" class="btn-cart" style="margin-right:50px">
       <svg class="icon-cart" viewBox="0 0 24.38 30.52" height="30.52" width="24.38" xmlns="http://www.w3.org/2000/svg">
         <path transform="translate(-3.62 -0.85)" d="M28,27.3,26.24,7.51a.75.75,0,0,0-.76-.69h-3.7a6,6,0,0,0-12,0H6.13a.76.76,0,0,0-.76.69L3.62,27.3v.07a4.29,4.29,0,0,0,4.52,4H23.48a4.29,4.29,0,0,0,4.52-4ZM15.81,2.37a4.47,4.47,0,0,1,4.46,4.45H11.35a4.47,4.47,0,0,1,4.46-4.45Zm7.67,27.48H8.13a2.79,2.79,0,0,1-3-2.45L6.83,8.34h3V11a.76.76,0,0,0,1.52,0V8.34h8.92V11a.76.76,0,0,0,1.52,0V8.34h3L26.48,27.4a2.79,2.79,0,0,1-3,2.44Zm0,0"></path>
         <span class="badge">2</span>
       </svg>
     </a>
+    
 </div>
 
 </div>
 
 
-<div class="content">
+<div class="header2">
 
-  <div class="dropdown" style="float:right">
-    <button onclick="myFunction()" class="dropbtn">Filter by</button>
-    <div id="myDropdown" class="dropdown-content">
-      <button class="filterbtn active" onclick="filterSelection('all')"> Show all</button>
-      <button class="filterbtn" onclick="filterSelection('praji1')"> Praji1</button>
-      <button class="filterbtn" onclick="filterSelection('praji2')"> Praji2</button>
-      <button class="filterbtn" onclick="filterSelection('valentines')"> Valentines</button>
-      <button class="filterbtn" onclick="filterSelection('wedding')"> Wedding</button>
+<div class="dropdown" style="float:right">
+    <button onclick="myFunction1()" class="dropbtn">Filter by</button>
+    <div id="FilterDropdown" class="dropdown-content">
+      <button class="filterbtn active" data-category="all" onclick="filterSelection('all')"> Show all</button>
+      <button class="filterbtn" data-category="praji1" onclick="filterSelection('praji1')"> Praji1</button>
+      <button class="filterbtn" data-category="praji2" onclick="filterSelection('praji2')"> Praji2</button>
+      <button class="filterbtn" data-category="valentines" onclick="filterSelection('valentines')"> Valentines</button>
+      <button class="filterbtn" data-category="wedding" onclick="filterSelection('wedding')"> Wedding</button>
     </div>
   </div>
 
-  <div class="dropdown">
-    <button onclick="myFunction()" class="dropbtn">Sort by</button>
-    <div id="myDropdown" class="dropdown-content">
+  <div class="dropdown" style="margin-left:30px">
+    <button onclick="myFunction2()" class="dropbtn">Sort by</button>
+    <div id="SortDropdown" class="dropdown-content">
       <button class="filterbtn" onclick="sortTable('priceascending')"> Price ascending</button>
-      <button class="filterbtn" onclick="sortTable('priceascending')"> Price ascending</button>
+      <button class="filterbtn" onclick="sortTable('pricedescending')"> Price descending</button>
     </div>
   </div>
-
 
   <script>
 
-  function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
+  function myFunction1() {
+    document.getElementById("FilterDropdown").classList.toggle("show");
+  }
+
+  function myFunction2() {
+    document.getElementById("SortDropdown").classList.toggle("show");
   }
 
   window.onclick = function(event) {
@@ -551,46 +576,60 @@ function closeNav() {
 
   <script>
 
+  let activeFilters = new Set(); // Track active filters
+
   function filterSelection(category) {
-    let items = document.querySelectorAll('.gallery');
+    if (category === "all") {
+      activeFilters.clear(); // Reset filters
+    } else {
+      if (activeFilters.has(category)) {
+        activeFilters.delete(category); // Remove filter if already selected
+      } else {
+        activeFilters.add(category); // Add filter
+      }
+    }
+
+    let items = document.querySelectorAll(".gallery");
+
     items.forEach(item => {
-      item.style.display = category === 'all' || item.classList.contains(category) ? 'block' : 'none';
+      let matches = [...activeFilters].some(filter => item.classList.contains(filter));
+      item.style.display = activeFilters.size === 0 || matches ? "block" : "none";
     });
-    document.querySelectorAll('.filterbtn').forEach(btn => btn.classList.remove('active'));
-    event.currentTarget.classList.add('active');
+
+    document.querySelectorAll(".filterbtn").forEach(btn => {
+      btn.classList.toggle("active", activeFilters.has(btn.dataset.category));
+    });
   }
-  </script>
-
-
-  <script>
 
   function sortTable(order) {
-    var container = document.getElementById("main"); // The container holding gallery items
-    var items = Array.from(container.getElementsByClassName("gallery")); // Get all gallery items
-    
+    let container = document.getElementById("gallery-container");
+    let items = Array.from(container.getElementsByClassName("gallery"));
+
     items.sort((a, b) => {
-      let priceA = parseFloat(a.querySelector(".desc").textContent.replace(/[^\d.]/g, "")) || 0;
-      let priceB = parseFloat(b.querySelector(".desc").textContent.replace(/[^\d.]/g, "")) || 0;
+      let priceA = parseFloat(a.querySelectorAll(".desc")[1].textContent.replace(/[^\d.]/g, "")) || 0;
+      let priceB = parseFloat(b.querySelectorAll(".desc")[1].textContent.replace(/[^\d.]/g, "")) || 0;
 
       return order === "priceascending" ? priceA - priceB : priceB - priceA;
     });
 
-    // Append sorted items back to the container
-    items.forEach(item => container.appendChild(item));
+    items.forEach(item => container.appendChild(item)); // Reorder DOM
   }
 
   // Close dropdown when clicking outside
   window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      for (let i = 0; i < dropdowns.length; i++) {
-        if (dropdowns[i].classList.contains("show")) {
-          dropdowns[i].classList.remove("show");
-        }
-      }
+    if (!event.target.matches(".dropbtn")) {
+      document.querySelectorAll(".dropdown-content").forEach(dropdown => {
+        dropdown.classList.remove("show");
+      });
     }
   };
   </script>
+
+
+</div>
+
+
+<div class="content">
 
   <br>
   <div id="gallery-container">
@@ -615,6 +654,7 @@ function closeNav() {
       <img src="https://i.pinimg.com/736x/ad/dc/f1/addcf18715ff3cb920ad72800501f5a9.jpg" width="600" height="400">
     </a>
     <div class="desc">Add a description of the image here</div>
+    <div class="desc"></div>
   </div>
 
   <div class="gallery wedding">
@@ -622,6 +662,7 @@ function closeNav() {
       <img src="https://i.pinimg.com/736x/87/4f/63/874f63920afcf961a4fd58fe111f70dc.jpg" width="600" height="400">
     </a>
     <div class="desc">Add a description of the image here</div>
+    <div class="desc"></div>
   </div>
 
   <div class="gallery praji1">
@@ -629,6 +670,7 @@ function closeNav() {
       <img src="https://i.pinimg.com/736x/32/76/73/32767392125e55774d9a8cb33a57fe70.jpg" width="600" height="400">
     </a>
     <div class="desc">Add a description of the image here</div>
+    <div class="desc"></div>
   </div>
 
   <div class="gallery praji2">
@@ -636,6 +678,7 @@ function closeNav() {
       <img src="https://i.pinimg.com/736x/60/c7/cd/60c7cd7f0b814af6e4e3e4f8fa69a1a9.jpg" width="600" height="400">
     </a>
     <div class="desc">Add a description of the image here</div>
+    <div class="desc"></div>
   </div>
 
   <div class="gallery valentines">
@@ -643,6 +686,7 @@ function closeNav() {
       <img src="https://i.pinimg.com/736x/ad/dc/f1/addcf18715ff3cb920ad72800501f5a9.jpg" width="600" height="400">
     </a>
     <div class="desc">Add a description of the image here</div>
+    <div class="desc"></div>
   </div>
 
   <div class="gallery wedding">
@@ -650,6 +694,7 @@ function closeNav() {
       <img src="https://i.pinimg.com/736x/87/4f/63/874f63920afcf961a4fd58fe111f70dc.jpg" width="600" height="400">
     </a>
     <div class="desc">Add a description of the image here</div>
+    <div class="desc"></div>
   </div>
 
   <div class="gallery praji1">
@@ -657,6 +702,7 @@ function closeNav() {
       <img src="https://i.pinimg.com/736x/32/76/73/32767392125e55774d9a8cb33a57fe70.jpg" width="600" height="400">
     </a>
     <div class="desc">Add a description of the image here</div>
+    <div class="desc"></div>
   </div>
 
   <div class="gallery praji1 praji2">
@@ -664,6 +710,7 @@ function closeNav() {
       <img src="https://i.pinimg.com/736x/60/c7/cd/60c7cd7f0b814af6e4e3e4f8fa69a1a9.jpg" width="600" height="400">
     </a>
     <div class="desc">Add a description of the image here</div>
+    <div class="desc"></div>
   </div>
 
   <div class="gallery valentines">
@@ -671,6 +718,7 @@ function closeNav() {
       <img src="https://i.pinimg.com/736x/ad/dc/f1/addcf18715ff3cb920ad72800501f5a9.jpg" width="600" height="400">
     </a>
     <div class="desc">Add a description of the image here</div>
+    <div class="desc"></div>
   </div>
 
   <div class="gallery">
@@ -678,6 +726,7 @@ function closeNav() {
       <img src="https://i.pinimg.com/736x/87/4f/63/874f63920afcf961a4fd58fe111f70dc.jpg" width="600" height="400">
     </a>
     <div class="desc">Add a description of the image here</div>
+    <div class="desc"></div>
   </div>
   
   </div>
@@ -685,7 +734,7 @@ function closeNav() {
 
 </div>
 
-<footer>@tea.srl</footer>
+<footer><p style="text-align:center">@tea.srl</p></footer>
 </body>
 
 </html>
